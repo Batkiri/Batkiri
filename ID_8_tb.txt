@@ -1,0 +1,42 @@
+module ID_tb();
+    reg [16:0] instruction;
+    wire RW;
+    wire  [2:0] DA;       //Data Address (3 bits)
+    wire [1:0] MD;        //MUX D Select (2 bits)
+    wire [1:0] BS;        //Branch Select (2 bits)
+    wire PS;              //Zero Toggle (2 bits)
+    wire MW;              //Memory Write (1 bit)
+    wire [3:0] FS;        //ALU Function Select (4 bits)
+    wire MA;              //MUX A select (1 bit) 
+    wire MB;              // MUX B select (1 bit)
+    wire [2:0]AA;         //Register A Address (3 bits)
+    wire [2:0]BA;         // Register B Address (3 bits)
+    wire CS;              // Constant Select (1 bit)
+    wire [2:0] SH;        //shift registers
+    wire output_write_enable;
+
+instruction_decoder UUT(.instruction(instruction),.RW(RW),.DA(DA),.MD(MD),.BS(BS),.PS(PS),.MW(MW),.FS(FS),.MA(MA),.MB(MB),.AA(AA),.BA(BA),.CS(CS),.SH(SH));
+
+//initial begin
+//  clk = 1;
+//  SH = 3'b000;
+//end 
+
+//// Clock Toggle - 50 time units
+//always begin
+//#50 clk = ~clk;
+//end
+
+initial
+begin
+instruction=17'b00000000000000000;
+#100;
+instruction=17'b01111_010_110_001_000;
+#100;
+instruction=17'b10100_100_010_010000;
+#100;
+instruction=17'b10000010010010000;
+#100;
+$finish;
+end
+endmodule
