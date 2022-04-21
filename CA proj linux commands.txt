@@ -1,0 +1,14 @@
+
+
+to copy gem5 to our home directory
+cp -r /usr/local/gem5 ~/
+
+to remove gem5.opt file
+rm -r build/X86/gem5.opt
+
+scons command to build gem5.opt file
+scons build/X86/gem5.opt
+
+to run the HelloWorld program after compilation
+./build/X86/gem5.opt ./configs/example/se.py -c ./tests/test-progs/hello/bin/x86/linux/hello
+
